@@ -1,0 +1,27 @@
+from urllib.request import urlopen
+from urllib.request import urlretrieve
+from bs4 import BeautifulSoup
+import re
+import os
+
+Web_URL = 'https://www.jkforum.net/thread-9857369-1-1.html'
+page = urlopen(Web_URL)
+soup = BeautifulSoup(page, 'html.parser')
+x = 0
+
+
+for link in soup.find_all('img'):
+    links = link.get('src')
+    if links != ' ' and type(links) != type(None) and links.find('gif') != True:
+        print(links)
+        local = os.path.join('C:\\Users\jackchin\Desktop\Python\Test\{}.jpg'.format(x))  #檔案儲存位置
+        try:
+            urlretrieve(links,local)
+            x+=1
+        except:
+            pass
+
+
+    else:
+        pass
+
