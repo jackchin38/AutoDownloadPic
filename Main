@@ -12,11 +12,16 @@ x = 0
 
 for link in soup.find_all('img'):
     links = link.get('data-src')
-    print(links)
-    local = os.path.join('C:\\Users\jackchin\Desktop\Python\Test\{}.jpg'.format(x))  #檔案儲存位置
-    x+=1
-    #links.remove(' ')
-    try:
-        urlretrieve(links,local)
-    except:
+    if links != ' ' and type(links) != type(None):
+        print(links)
+        local = os.path.join('C:\\Users\jackchin\Desktop\Python\Test\{}.jpg'.format(x))  #檔案儲存位置
+        try:
+            urlretrieve(links,local)
+            x+=1
+        except:
+            pass
+
+
+    else:
         pass
+
